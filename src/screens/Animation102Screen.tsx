@@ -27,7 +27,6 @@ export const Animation102Screen = () => {
     return (
         <View style={styles.container}>
             <Animated.View {...panResponder.panHandlers} style={[pan.getLayout(), styles.box]} />
-            {/* <View style={styles.purpleBox} /> */}
         </View>
     );
 };
@@ -43,10 +42,5 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 4,
-    },
-    purpleBox: {
-        backgroundColor: 'red',
-        width: 150,
-        height: 150,
     },
 });
