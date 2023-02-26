@@ -12,4 +12,13 @@ export const styles = StyleSheet.create({
     blackText: {
         color: 'black',
     },
+    input: {
+        borderWidth: 1,
+        borderColor: 'rgba(0,0,0,0.5)',
+        height: 50,
+        marginVertical: 5,
+        paddingHorizontal: 10,
+        color: 'black',
+        borderRadius: 10,
+    },
 });
