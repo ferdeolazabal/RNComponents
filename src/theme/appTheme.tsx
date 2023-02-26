@@ -21,4 +21,13 @@ export const styles = StyleSheet.create({
         color: 'black',
         borderRadius: 10,
     },
+    switchRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    text: {
+        color: 'black',
+        fontSize: 18,
+    },
 });
