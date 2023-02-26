@@ -3,7 +3,7 @@ import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { styles } from '../theme/appTheme';
 
-const PullToRefresh = () => {
+const PullToRefreshScreen = () => {
     const [refreshing, setRefreshing] = useState(false);
 
     const onRefresh = useCallback(() => {
@@ -36,4 +36,4 @@ const PullToRefresh = () => {
     );
 };
 
-export default PullToRefresh;
+export default PullToRefreshScreen;
