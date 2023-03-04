@@ -1,3 +1,5 @@
+import { StackScreenProps } from '@react-navigation/stack';
+import { useRef, useState } from 'react';
 import {
     View,
     Text,
@@ -5,11 +7,15 @@ import {
     ImageSourcePropType,
     Dimensions,
     Image,
+    TouchableOpacity,
     StyleSheet,
+    Animated,
 } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { useAnimation } from '../hooks/useAnimation';
 
-const { width: windowWidth } = Dimensions.get('window');
+const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
 
 interface Slide {
     title: string;
@@ -35,7 +41,20 @@ const items: Slide[] = [
     },
 ];
 
-const SlidesScreen = () => {
+interface Props extends StackScreenProps<any, any> {}
+
+const SlidesScreen = ({ navigation }: Props) => {
+    const { opacity, fadeIn } = useAnimation();
+    const isCarousel = useRef(null);
+    const [index, setIndex] = useState(0);
+    const isVisible = useRef(false);
+
+    const goHome = () => {
+        if (isVisible) {
+            navigation.navigate('HomeScreen');
+        }
+    };
+
     const renderItem = (item: Slide) => {
         return (
             <View style={styles.slide}>
@@ -47,18 +66,43 @@ const SlidesScreen = () => {
     };
 
     return (
-        <SafeAreaView
-            style={{
-                flex: 1,
-            }}>
+        <SafeAreaView style={styles.container}>
             <Carousel
+                layout="default"
                 data={items}
                 renderItem={({ item }: any) => renderItem(item)}
                 sliderWidth={windowWidth}
                 itemWidth={windowWidth}
                 vertical={false}
-                layout="default"
+                useScrollView={true}
+                onSnapToItem={(index) => {
+                    setIndex(index);
+                    if (items.length - 1 === index) {
+                        isVisible.current = true;
+                        fadeIn();
+                    }
+                }}
+                ref={isCarousel}
             />
+
+            <View style={styles.bottomContainer}>
+                <Pagination
+                    dotsLength={items.length}
+                    carouselRef={isCarousel}
+                    activeDotIndex={index}
+                    inactiveDotOpacity={0.4}
+                    inactiveDotScale={0.6}
+                    tappableDots={true}
+                    dotStyle={styles.dotStyle}
+                />
+
+                <Animated.View style={{ opacity }}>
+                    <TouchableOpacity onPress={goHome} style={styles.btn} activeOpacity={0.6}>
+                        <Text style={styles.btnText}>Entrar</Text>
+                        <Icon name="chevron-forward-outline" color="white" size={30} />
+                    </TouchableOpacity>
+                </Animated.View>
+            </View>
         </SafeAreaView>
     );
 };
@@ -66,8 +110,18 @@ const SlidesScreen = () => {
 export default SlidesScreen;
 
 const styles = StyleSheet.create({
-    blackText: {
-        color: 'black',
+    container: {
+        flex: 1,
+        paddingTop: 50,
+        backgroundColor: 'white',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
     title: {
         top: -50,
@@ -82,14 +136,39 @@ const styles = StyleSheet.create({
     },
     slide: {
         flex: 1,
-        backgroundColor: 'white',
-        borderRadius: 10,
         padding: 40,
+        top: -30,
         justifyContent: 'center',
     },
     image: {
-        width: 350,
-        height: 400,
+        width: windowWidth,
+        height: windowHeight * 0.7,
         resizeMode: 'center',
+    },
+    dotStyle: {
+        marginHorizontal: 0,
+        width: 10,
+        height: 10,
+        borderRadius: 10,
+        backgroundColor: '#5856D6',
+    },
+    bottomContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: 10,
+        alignItems: 'center',
+    },
+    btn: {
+        flexDirection: 'row',
+        backgroundColor: '#5856D6',
+        width: 140,
+        height: 50,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    btnText: {
+        fontSize: 25,
+        color: 'white',
     },
 });
