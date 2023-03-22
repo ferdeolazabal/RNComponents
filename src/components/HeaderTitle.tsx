@@ -11,14 +11,14 @@ interface Props {
 
 export const HeaderTitle = ({ title, withMarginBottom = true }: Props) => {
     const { top } = useSafeAreaInsets();
-    // const { colors } = useTheme();
+    const { colors } = useTheme();
 
     return (
         <View style={{ marginTop: top + 20, marginBottom: withMarginBottom ? 15 : 0 }}>
             <Text
                 style={{
                     ...styles.title,
-                    // color: colors.text
+                    color: colors.text,
                 }}>
                 {title}
             </Text>
