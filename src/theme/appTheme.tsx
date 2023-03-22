@@ -7,10 +7,10 @@ export const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         fontWeight: 'bold',
-        color: 'black',
+        // color: 'black',
     },
     blackText: {
-        color: 'black',
+        // color: 'black',
     },
     input: {
         borderWidth: 1,
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
         height: 50,
         marginVertical: 5,
         paddingHorizontal: 10,
-        color: 'black',
+        // color: 'black',
         borderRadius: 10,
     },
     switchRow: {
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        color: 'black',
+        // color: 'black',
         fontSize: 18,
     },
     centeredView: {
@@ -71,6 +71,6 @@ export const styles = StyleSheet.create({
     modalText: {
         marginBottom: 15,
         textAlign: 'center',
-        color: 'black',
+        // color: 'black',
     },
 });
