@@ -1,5 +1,5 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import {
     View,
     Text,
@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 import { useAnimation } from '../hooks/useAnimation';
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
@@ -44,6 +45,10 @@ const items: Slide[] = [
 interface Props extends StackScreenProps<any, any> {}
 
 const SlidesScreen = ({ navigation }: Props) => {
+    const {
+        theme: { colors },
+    } = useContext(ThemeContext);
+
     const { opacity, fadeIn } = useAnimation();
     const isCarousel = useRef(null);
     const [index, setIndex] = useState(0);
@@ -66,7 +71,7 @@ const SlidesScreen = ({ navigation }: Props) => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={{ ...styles.container, backgroundColor: colors.primary }}>
             <Carousel
                 layout="default"
                 data={items}
@@ -113,7 +118,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 50,
-        backgroundColor: 'white',
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
@@ -127,12 +131,10 @@ const styles = StyleSheet.create({
         top: -50,
         fontSize: 30,
         fontWeight: 'bold',
-        color: '#5856D6',
     },
     subtitle: {
         top: -50,
         fontSize: 16,
-        color: 'black',
     },
     slide: {
         flex: 1,
@@ -150,7 +152,6 @@ const styles = StyleSheet.create({
         width: 10,
         height: 10,
         borderRadius: 10,
-        backgroundColor: '#5856D6',
     },
     bottomContainer: {
         flexDirection: 'row',
@@ -169,6 +170,5 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontSize: 25,
-        color: 'white',
     },
 });
