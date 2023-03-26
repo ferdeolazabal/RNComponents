@@ -1,11 +1,15 @@
 import { useState, useContext } from 'react';
 import { Alert, Modal, Text, Pressable, View, Button } from 'react-native';
+
 import { HeaderTitle } from '../components/HeaderTitle';
 import { ThemeContext } from '../context/themeContext/ThemeContext';
+
 import { styles } from '../theme/appTheme';
 
 const ModalScreen = () => {
-    const { theme: { colors } } = useContext(ThemeContext);
+    const {
+        theme: { colors, dividerColor },
+    } = useContext(ThemeContext);
 
     const [modalVisible, setModalVisible] = useState(false);
     const [modalVisible2, setModalVisible2] = useState(false);
@@ -22,14 +26,12 @@ const ModalScreen = () => {
                 <View
                     style={{
                         flex: 1,
-                        backgroundColor: colors.background
-                        // backgroundColor: 'rgba(0,0,0,0.4)',
+                        backgroundColor: dividerColor,
                     }}>
-                    {/* cont modal */}
-                    <View style={styles.centeredView}>
-                        <View style={styles.modalView}>
+                    <View style={{ ...styles.centeredView }}>
+                        <View style={{ ...styles.modalView, backgroundColor: colors.background }}>
                             <HeaderTitle title="Título" />
-                            <Text style={styles.modalText}>Cuerpo</Text>
+                            <Text style={{ ...styles.modalText, color: colors.text }}>Cuerpo</Text>
                             <Button title="Cerrar" onPress={() => setModalVisible(!modalVisible)} />
                         </View>
                     </View>
@@ -45,21 +47,35 @@ const ModalScreen = () => {
                     Alert.alert('Modal has been closed.');
                     setModalVisible2(() => !modalVisible2);
                 }}>
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Hello World!</Text>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible2(!modalVisible2)}>
-                            <Text style={styles.textStyle}>Hide Modal</Text>
-                        </Pressable>
+                <View
+                    style={{
+                        flex: 1,
+                        backgroundColor: dividerColor,
+                    }}>
+                    <View style={styles.centeredView}>
+                        <View style={{ ...styles.modalView, backgroundColor: colors.background }}>
+                            <Text style={{ ...styles.modalText, color: colors.text }}>
+                                Hello World!
+                            </Text>
+                            <Pressable
+                                style={styles.button}
+                                onPress={() => setModalVisible2(!modalVisible2)}>
+                                <Text
+                                    style={{
+                                        ...styles.textStyle,
+                                        backgroundColor: colors.primary,
+                                    }}>
+                                    Hide Modal
+                                </Text>
+                            </Pressable>
+                        </View>
                     </View>
                 </View>
             </Modal>
-            <Pressable
-                style={{...styles.button, ...styles.buttonOpen}}
-                onPress={() => setModalVisible2(true)}>
-                <Text style={{...styles.textStyle, backgroundColor: colors.primary}}>Abrir modal</Text>
+            <Pressable style={styles.button} onPress={() => setModalVisible2(true)}>
+                <Text style={{ ...styles.textStyle, backgroundColor: colors.primary }}>
+                    Abrir modal
+                </Text>
             </Pressable>
         </View>
     );

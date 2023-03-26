@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop:10,
+        marginTop: 10,
     },
     text: {
         fontSize: 18,
@@ -49,17 +49,10 @@ export const styles = StyleSheet.create({
     },
     button: {
         borderRadius: 20,
-        padding: 10,
         elevation: 2,
     },
-    buttonOpen: {
-        // backgroundColor: '#F194FF',
-    },
-    buttonClose: {
-        // backgroundColor: '#2196F3',
-    },
     textStyle: {
-        padding:10,
+        padding: 10,
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
