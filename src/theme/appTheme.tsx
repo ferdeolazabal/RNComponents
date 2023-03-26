@@ -7,27 +7,22 @@ export const styles = StyleSheet.create({
     title: {
         fontSize: 30,
         fontWeight: 'bold',
-        // color: 'black',
-    },
-    blackText: {
-        // color: 'black',
     },
     input: {
         borderWidth: 1,
         borderColor: 'rgba(0,0,0,0.5)',
         height: 50,
         marginVertical: 5,
-        paddingHorizontal: 10,
-        // color: 'black',
+        paddingHorizontal: 15,
         borderRadius: 10,
     },
     switchRow: {
+        alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        marginTop:10,
     },
     text: {
-        // color: 'black',
         fontSize: 18,
     },
     centeredView: {
@@ -39,7 +34,7 @@ export const styles = StyleSheet.create({
     modalView: {
         minWidth: 200,
         margin: 20,
-        backgroundColor: 'white',
+        // backgroundColor: 'white',
         borderRadius: 20,
         padding: 25,
         alignItems: 'center',
@@ -58,12 +53,13 @@ export const styles = StyleSheet.create({
         elevation: 2,
     },
     buttonOpen: {
-        backgroundColor: '#F194FF',
+        // backgroundColor: '#F194FF',
     },
     buttonClose: {
-        backgroundColor: '#2196F3',
+        // backgroundColor: '#2196F3',
     },
     textStyle: {
+        padding:10,
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
@@ -71,6 +67,5 @@ export const styles = StyleSheet.create({
     modalText: {
         marginBottom: 15,
         textAlign: 'center',
-        // color: 'black',
     },
 });

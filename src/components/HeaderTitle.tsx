@@ -1,7 +1,8 @@
-import React from 'react';
-import { useTheme } from '@react-navigation/native';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 import { Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 import { styles } from '../theme/appTheme';
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
 
 export const HeaderTitle = ({ title, withMarginBottom = true }: Props) => {
     const { top } = useSafeAreaInsets();
-    const { colors } = useTheme();
+    const { theme: { colors } } = useContext( ThemeContext );
 
     return (
         <View style={{ marginTop: top + 20, marginBottom: withMarginBottom ? 15 : 0 }}>

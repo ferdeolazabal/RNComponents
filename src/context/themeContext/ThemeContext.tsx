@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react';
-import { lightTheme, themeReducer, ThemeState } from './ThemeReducer';
+import { lightTheme, themeReducer, ThemeState } from './themeReducer';
 
 interface ThemeContextProps {
     theme: ThemeState;

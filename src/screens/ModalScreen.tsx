@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Alert, Modal, Text, Pressable, View, Button } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 import { styles } from '../theme/appTheme';
 
 const ModalScreen = () => {
+    const { theme: { colors } } = useContext(ThemeContext);
+
     const [modalVisible, setModalVisible] = useState(false);
     const [modalVisible2, setModalVisible2] = useState(false);
+
     return (
         <View style={styles.globalMargin}>
             <HeaderTitle title="Modals" />
@@ -15,11 +19,11 @@ const ModalScreen = () => {
             </View>
 
             <Modal animationType="fade" visible={modalVisible} transparent={true}>
-                {/* background opaco */}
                 <View
                     style={{
                         flex: 1,
-                        backgroundColor: 'rgba(0,0,0,0.4)',
+                        backgroundColor: colors.background
+                        // backgroundColor: 'rgba(0,0,0,0.4)',
                     }}>
                     {/* cont modal */}
                     <View style={styles.centeredView}>
@@ -53,9 +57,9 @@ const ModalScreen = () => {
                 </View>
             </Modal>
             <Pressable
-                style={[styles.button, styles.buttonOpen]}
+                style={{...styles.button, ...styles.buttonOpen}}
                 onPress={() => setModalVisible2(true)}>
-                <Text style={styles.textStyle}>Abrir modal</Text>
+                <Text style={{...styles.textStyle, backgroundColor: colors.primary}}>Abrir modal</Text>
             </Pressable>
         </View>
     );

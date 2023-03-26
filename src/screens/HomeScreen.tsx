@@ -7,6 +7,7 @@ import FlatListMenuItem from '../components/FlatListMenuItem';
 import ItemSeparator from '../components/ItemSeparator';
 
 const HomeScreen = () => {
+
     return (
         <View style={{ flex: 1, ...styles.globalMargin }}>
             <FlatList
@@ -14,7 +15,7 @@ const HomeScreen = () => {
                 keyExtractor={(item) => item.name}
                 renderItem={({ item }) => <FlatListMenuItem menuItem={item} />}
                 ListHeaderComponent={() => <HeaderTitle title={'Opciones de Menú'} />}
-                ItemSeparatorComponent={ItemSeparator}
+                ItemSeparatorComponent={() => <ItemSeparator/>}
             />
         </View>
     );

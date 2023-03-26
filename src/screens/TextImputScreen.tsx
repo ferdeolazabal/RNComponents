@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { ScrollView, Text, TextInput, View } from 'react-native';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
+
 import { CustomSwitch } from '../components/CustomSwitch';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { useForm } from '../hooks/useForm';
 import { styles } from '../theme/appTheme';
 
 const TextInputScreen = () => {
+    const { theme: { colors, dividerColor } } = useContext(ThemeContext);
+
     const [text, onChangeText] = useState('Text');
     const [number, onChangeNumber] = useState('');
     const { form, isSuscribed, onChange } = useForm({
@@ -17,55 +21,93 @@ const TextInputScreen = () => {
 
     return (
         <ScrollView style={styles.globalMargin}>
+            
             <HeaderTitle title="Text Inputs" />
-            <TextInput style={styles.input} onChangeText={onChangeText} value={text} />
+
             <TextInput
-                style={styles.input}
+                style={{
+                    ...styles.input,
+                    borderColor: colors.text,
+                    color: colors.text
+                }}
+                onChangeText={onChangeText} 
+                value={text}
+            />
+
+            <TextInput
+                style={{
+                    ...styles.input,
+                    borderColor: colors.text,
+                    color: colors.text
+                }}
                 onChangeText={onChangeNumber}
                 value={number}
                 placeholder="Placeholder"
-                placeholderTextColor={'grey'}
+                placeholderTextColor={dividerColor}
                 keyboardType="numeric"
             />
 
             <HeaderTitle title="Form text Inputs" />
+
             <TextInput
-                style={styles.input}
+                style={{
+                    ...styles.input,
+                    borderColor: colors.text,
+                    color: colors.text
+                }}
                 placeholder="Ingrese su nombre"
-                placeholderTextColor={'grey'}
+                placeholderTextColor={dividerColor}
                 autoCorrect={false}
                 autoCapitalize="words"
                 onChangeText={(value: string) => onChange(value, 'name')}
             />
+
             <TextInput
-                style={styles.input}
+                style={{
+                    ...styles.input,
+                    borderColor: colors.text,
+                    color: colors.text
+                }}
                 placeholder="Ingrese su email"
-                placeholderTextColor={'grey'}
+                placeholderTextColor={dividerColor}
                 autoCorrect={false}
                 autoCapitalize="none"
                 onChangeText={(value: string) => onChange(value, 'email')}
                 keyboardType="email-address"
                 keyboardAppearance="dark"
             />
+
             <TextInput
-                style={styles.input}
+                style={{
+                    ...styles.input,
+                    borderColor: colors.text,
+                    color: colors.text
+                }}
                 placeholder="Ingrese su teléfono"
-                placeholderTextColor={'grey'}
+                placeholderTextColor={dividerColor}
                 onChangeText={(value: string) => onChange(value, 'phone')}
                 keyboardType="phone-pad"
             />
 
             <View style={styles.switchRow}>
-                <Text style={styles.text}>Suscribirse</Text>
+                <Text 
+                    style={{
+                        ...styles.text, 
+                        color:colors.text
+                    }}>
+                    Suscribirse
+                </Text>
+
                 <CustomSwitch
                     isOn={isSuscribed}
                     onChange={(value) => onChange(value, 'isSuscribed')}
                 />
             </View>
 
-            <Text style={{ ...styles.blackText, fontSize: 16 }}>
+            <Text style={{ fontSize: 16, color:colors.text }}>
                 {JSON.stringify(form, null, 3)}
             </Text>
+
             <View style={{ height: 30 }} />
         </ScrollView>
     );
